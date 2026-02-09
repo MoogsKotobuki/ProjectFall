@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://2041v148sgew"]
+
+[ext_resource type="Script" uid="uid://dmkuthv6qaug0" path="res://Class/StateMachine.gd" id="2_poqhb"]
+[ext_resource type="Script" uid="uid://cnolx3vya64rc" path="res://Class/input_handler.gd" id="3_2iqeg"]
+[ext_resource type="Script" uid="uid://ctuu2a6qkqb74" path="res://Model/WalkState.gd" id="3_8j744"]
+[ext_resource type="Script" uid="uid://bben6sfn14p3m" path="res://Model/player_control.gd" id="4_8j744"]
+[ext_resource type="Script" uid="uid://bieultrkfagdp" path="res://Model/idle.gd" id="4_isli1"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_y6x37"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rdoh2"]
+
+[node name="Entity" type="CharacterBody3D" unique_id=1953909952]
+
+[node name="MeshPlaceHolder" type="Node3D" parent="." unique_id=1880820043]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshPlaceHolder" unique_id=924538509]
+mesh = SubResource("CapsuleMesh_y6x37")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=376896990]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_rdoh2")
+
+[node name="StateMachine" type="Node" parent="." unique_id=1031256437 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_poqhb")
+initial_state = NodePath("Idle")
+metadata/_custom_type_script = "uid://dmkuthv6qaug0"
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=1194267518]
+script = ExtResource("4_isli1")
+metadata/_custom_type_script = "uid://bfxeubn6ba5in"
+
+[node name="Walk" type="Node" parent="StateMachine" unique_id=472675085]
+script = ExtResource("3_8j744")
+metadata/_custom_type_script = "uid://bfxeubn6ba5in"
+
+[node name="InputHandler" type="Node" parent="." unique_id=578891036 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_2iqeg")
+initial_state = NodePath("PlayerControl")
+metadata/_custom_type_script = "uid://cnolx3vya64rc"
+
+[node name="PlayerControl" type="Node" parent="InputHandler" unique_id=395443593]
+script = ExtResource("4_8j744")
+metadata/_custom_type_script = "uid://bfxeubn6ba5in"

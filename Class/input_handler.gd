@@ -1,8 +1,8 @@
 class_name InputHandler
 extends Node
 
-@export var initial_state: State
-var current_state: State
+@export var initial_state: StateControl
+var current_state: StateControl
 var states:Dictionary[String,State] = {}
 
 var mov:Vector2
@@ -20,11 +20,11 @@ func _ready() -> void:
 		
 func _process(delta: float) -> void:
 	if current_state:
-		current_state.update(delta)
+		current_state._update(delta)
 		
 func _physics_process(delta: float) -> void:
 	if current_state:
-		current_state.physics_update(delta)
+		current_state._physics_update(delta)
 
 func change_state(new_state_name: String) -> void:
 	var new_state = states.get(new_state_name.to_lower())

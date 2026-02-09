@@ -8,3 +8,13 @@ func getCharacter3D(node:Node) -> void:
 		parent = parent.get_parent()
 	else:
 		value = parent
+
+func getInputHandler(node:Node) -> void:
+	
+	var parent = node
+	
+	for child in parent.get_children():
+		if child.name == "InputHandler":
+			value = child
+	
+	
