@@ -3,14 +3,14 @@ extends Node
 
 @export var initial_state: StateControl
 var current_state: StateControl
-var states:Dictionary[String,State] = {}
+var states:Dictionary[String,StateControl] = {}
 
 var mov:Vector2
 var look:Vector2
 
 func _ready() -> void:
 	for child in get_children():
-		if child is State:
+		if child is StateControl:
 			child.state_machine = self
 			states[child.name.to_lower()] = child
 	
