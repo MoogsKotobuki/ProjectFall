@@ -9,6 +9,13 @@ func getCharacter3D(node:Node) -> void:
 	else:
 		value = parent
 
+func getPlayerEntity(node:Node) -> void:
+	var parent = node.get_parent()
+	
+	for a in parent.get_children():
+		if a.name == "Player":
+			value = a
+
 func getInputHandler(node:Node) -> void:
 	
 	var parent = node

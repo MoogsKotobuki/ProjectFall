@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://bqxa70t5r6r73"]
 
+[ext_resource type="Script" uid="uid://b6u3cxikaqcm0" path="res://Level/00_debug.gd" id="1_mn1jl"]
 [ext_resource type="PackedScene" uid="uid://2041v148sgew" path="res://Model/Entity.tscn" id="1_o0yo6"]
+[ext_resource type="PackedScene" uid="uid://v1ealubmoefo" path="res://Model/Camera.tscn" id="2_cou4y"]
+[ext_resource type="PackedScene" uid="uid://cci2xsd7nds8t" path="res://Model/Debugging_UI.tscn" id="2_tgmvk"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o0yo6"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -21,7 +24,7 @@ size = Vector2(500, 500)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o0yo6"]
 albedo_texture = SubResource("PlaceholderTexture2D_xgwdi")
 uv1_scale = Vector3(25, 25, 25)
-texture_filter = 4
+texture_filter = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_cou4y"]
 lightmap_size_hint = Vector2i(502, 502)
@@ -31,6 +34,9 @@ size = Vector2(100, 100)
 subdivide_width = 100
 
 [node name="LevelDebug" type="Node3D" unique_id=1628727976]
+script = ExtResource("1_mn1jl")
+
+[node name="Control" parent="." unique_id=1857890456 instance=ExtResource("2_tgmvk")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=694533608]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
@@ -42,8 +48,9 @@ environment = SubResource("Environment_mn1jl")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2024016421]
 mesh = SubResource("PlaneMesh_cou4y")
 
-[node name="Character" parent="." unique_id=1953909952 instance=ExtResource("1_o0yo6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9123263, 0, 0.22806464)
+[node name="Player" parent="." unique_id=1953909952 instance=ExtResource("1_o0yo6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.912, 0, 0)
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=9064510]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5484037, 6.91704)
+[node name="Camera" parent="." unique_id=1880610517 instance=ExtResource("2_cou4y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 20)
+fov = 30.5

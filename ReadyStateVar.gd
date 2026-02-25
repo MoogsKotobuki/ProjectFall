@@ -1,9 +1,10 @@
 class_name ReadyState
 
-func Ready(state:State,state_m:StateMachine)->void:
-	var r = SReady.new()	
-	r.Entity(state_m)
-	state.Entity = r.object[0]
-	r.Handler(state.Entity)
-	state.IHandler = r.object[1]
+func Ready(state:State,state_m:StateMachine,model:int)->void:
 	
+	match model:
+		1:
+			var r = SReady.new()	
+			state.Entity = state_m.get_parent()
+			r.GetInputHandler(state.Entity)
+			state.IHandler = r.object[0]

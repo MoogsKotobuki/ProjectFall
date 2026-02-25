@@ -3,7 +3,7 @@ class_name SReady
 
 var object : Array
 
-func Entity(stateMachine:StateMachine):
+func GetCharacter3D(stateMachine:StateMachine):
 	var g = GetAlgo.new()
 	
 	g.getCharacter3D(stateMachine)
@@ -11,7 +11,7 @@ func Entity(stateMachine:StateMachine):
 		object.append(g.value)
 		g.value == null
 
-func Handler(node:Node):
+func GetInputHandler(node:Node):
 	var g = GetAlgo.new()
 	
 	g.getInputHandler(node)

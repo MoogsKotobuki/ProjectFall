@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://v1ealubmoefo"]
+
+[ext_resource type="Script" uid="uid://dmkuthv6qaug0" path="res://Class/StateMachine.gd" id="1_hy81t"]
+[ext_resource type="Script" uid="uid://u5eglbc3u88v" path="res://PlayerCam.gd" id="2_cj3pu"]
+
+[node name="Camera3D" type="Camera3D" unique_id=1880610517]
+
+[node name="StateMachine" type="Node" parent="." unique_id=171200061 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("1_hy81t")
+initial_state = NodePath("NormalMode")
+metadata/_custom_type_script = "uid://dmkuthv6qaug0"
+
+[node name="NormalMode" type="Node" parent="StateMachine" unique_id=848295272]
+script = ExtResource("2_cj3pu")
+metadata/_custom_type_script = "uid://bfxeubn6ba5in"
