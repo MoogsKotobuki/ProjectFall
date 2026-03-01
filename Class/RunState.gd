@@ -20,18 +20,19 @@ func enter() -> void:
 
 func exit() -> void:
 	Entity.cVelocity = cVelocity
+	Entity.velocity = Entity.velocity
 	
 func _update(_delta: float) -> void:
-	Entity.position.z == 0
+	Entity.position.z = 0
 	DebugVariable.PlayerVelocity = cVelocity
 	
 	var raw_input = Vector2(IHandler.mov.x,0)
 	var input_strenght = raw_input.length()
 	globalInputStrenght = input_strenght
 	
-	if globalInputStrenght != globalInputStrenght:
-		print(globalInputStrenght)
-		
+	if Input.is_action_just_pressed("jump"):
+		state_machine.change_state("jump")
+	
 	if cVelocity == 0:
 		state_machine.change_state("idle")
 		

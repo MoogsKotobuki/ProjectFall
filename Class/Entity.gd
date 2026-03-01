@@ -5,4 +5,4 @@ extends CharacterBody3D
 var cVelocity = 0.0
 
 func _process(delta: float) -> void:
-	pass
+	print("In Floor: " + str(is_on_floor()))

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://2041v148sgew"]
 
-[ext_resource type="Script" uid="uid://ctffwkhfuxb8c" path="res://Class/Entity.gd" id="1_mhpys"]
+[ext_resource type="Script" uid="uid://ctffwkhfuxb8c" path="res://Entity.gd" id="1_mhpys"]
 [ext_resource type="Script" uid="uid://dmkuthv6qaug0" path="res://Class/StateMachine.gd" id="2_poqhb"]
 [ext_resource type="Script" uid="uid://cnolx3vya64rc" path="res://Class/input_handler.gd" id="3_2iqeg"]
 [ext_resource type="Script" uid="uid://bkv3lp1vkdwok" path="res://Class/WalkState.gd" id="3_8j744"]
@@ -9,7 +9,6 @@
 [ext_resource type="Script" uid="uid://ctuu2a6qkqb74" path="res://Class/RunState.gd" id="4_ntrk5"]
 [ext_resource type="Script" uid="uid://soriqcfwpeqx" path="res://Class/flip_run.gd" id="6_xadop"]
 [ext_resource type="Script" uid="uid://7fccwb3ig5rv" path="res://Class/Jump.gd" id="7_iaa3j"]
-[ext_resource type="Script" uid="uid://pifx3xwv5ak" path="res://Class/Falling.gd" id="8_stese"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_y6x37"]
 
@@ -59,12 +58,6 @@ metadata/_custom_type_script = "uid://bfxeubn6ba5in"
 
 [node name="Jump" type="Node" parent="StateMachine" unique_id=2099684512]
 script = ExtResource("7_iaa3j")
-metadata/_custom_type_script = "uid://bfxeubn6ba5in"
-
-[node name="Timer" type="Timer" parent="StateMachine/Jump" unique_id=216617496]
-
-[node name="Fall" type="Node" parent="StateMachine" unique_id=430876757]
-script = ExtResource("8_stese")
 metadata/_custom_type_script = "uid://bfxeubn6ba5in"
 
 [node name="InputHandler" type="Node" parent="." unique_id=578891036 node_paths=PackedStringArray("initial_state")]

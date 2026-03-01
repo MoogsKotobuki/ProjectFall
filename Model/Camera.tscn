@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://v1ealubmoefo"]
 
 [ext_resource type="Script" uid="uid://dmkuthv6qaug0" path="res://Class/StateMachine.gd" id="1_hy81t"]
-[ext_resource type="Script" uid="uid://u5eglbc3u88v" path="res://PlayerCam.gd" id="2_cj3pu"]
+[ext_resource type="Script" uid="uid://u5eglbc3u88v" path="res://Class/PlayerCam.gd" id="2_cj3pu"]
 
 [node name="Camera3D" type="Camera3D" unique_id=1880610517]
 

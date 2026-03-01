@@ -61,8 +61,6 @@ metadata/_custom_type_script = "uid://bfxeubn6ba5in"
 script = ExtResource("7_iaa3j")
 metadata/_custom_type_script = "uid://bfxeubn6ba5in"
 
-[node name="Timer" type="Timer" parent="StateMachine/Jump" unique_id=216617496]
-
 [node name="Fall" type="Node" parent="StateMachine" unique_id=430876757]
 script = ExtResource("8_stese")
 metadata/_custom_type_script = "uid://bfxeubn6ba5in"
