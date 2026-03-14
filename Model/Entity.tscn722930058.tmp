@@ -7,26 +7,22 @@
 [ext_resource type="Script" uid="uid://bben6sfn14p3m" path="res://Class/player_control.gd" id="4_8j744"]
 [ext_resource type="Script" uid="uid://bieultrkfagdp" path="res://Class/idle.gd" id="4_isli1"]
 [ext_resource type="Script" uid="uid://ctuu2a6qkqb74" path="res://Class/RunState.gd" id="4_ntrk5"]
+[ext_resource type="Script" uid="uid://soriqcfwpeqx" path="res://Class/flip_run.gd" id="6_xadop"]
 [ext_resource type="Script" uid="uid://7fccwb3ig5rv" path="res://Class/Jump.gd" id="7_iaa3j"]
 [ext_resource type="Script" uid="uid://pifx3xwv5ak" path="res://Class/Falling.gd" id="8_stese"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_y6x37"]
-radius = 0.35
-height = 1.69
 
 [sub_resource type="BoxMesh" id="BoxMesh_mhpys"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_iaa3j"]
-size = Vector3(0.7, 1.69, 0.7)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rdoh2"]
 
 [node name="Entity" type="CharacterBody3D" unique_id=727266924]
 script = ExtResource("1_mhpys")
-mass = 3.5
-JumpForce = 1.5
 metadata/_custom_type_script = "uid://ctffwkhfuxb8c"
 
 [node name="MeshPlaceHolder" type="Node3D" parent="." unique_id=1880820043]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.854442, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MeshPlaceHolder" unique_id=924538509]
 mesh = SubResource("CapsuleMesh_y6x37")
@@ -36,8 +32,8 @@ transform = Transform3D(0.23, 0, 0, 0, 0.23, 0, 0, 0, 0.23, -0.81489867, 0.42307
 mesh = SubResource("BoxMesh_mhpys")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=376896990]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.854442, 0)
-shape = SubResource("BoxShape3D_iaa3j")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_rdoh2")
 
 [node name="StateMachine" type="Node" parent="." unique_id=1031256437 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_poqhb")
@@ -46,7 +42,7 @@ metadata/_custom_type_script = "uid://dmkuthv6qaug0"
 
 [node name="Idle" type="Node" parent="StateMachine" unique_id=1194267518]
 script = ExtResource("4_isli1")
-decel = 20
+decel = 5
 metadata/_custom_type_script = "uid://bfxeubn6ba5in"
 
 [node name="Walk" type="Node" parent="StateMachine" unique_id=763503390]
@@ -57,8 +53,13 @@ metadata/_custom_type_script = "uid://bfxeubn6ba5in"
 script = ExtResource("4_ntrk5")
 metadata/_custom_type_script = "uid://bfxeubn6ba5in"
 
+[node name="FlipRun" type="Node" parent="StateMachine" unique_id=1344127026]
+script = ExtResource("6_xadop")
+metadata/_custom_type_script = "uid://bfxeubn6ba5in"
+
 [node name="Jump" type="Node" parent="StateMachine" unique_id=2099684512]
 script = ExtResource("7_iaa3j")
+maxJumpForce = 12.0
 metadata/_custom_type_script = "uid://bfxeubn6ba5in"
 
 [node name="Timer" type="Timer" parent="StateMachine/Jump" unique_id=216617496]

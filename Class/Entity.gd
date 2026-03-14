@@ -2,7 +2,17 @@ class_name Entity
 
 extends CharacterBody3D
 
-var cVelocity = 0.0
+@export var mass = 2.0
+@export var JumpForce:float = 2.0
+@export var runSpeed:float = 5.0
+@export var walkSpeed:float =1.5
 
+
+var previousMaxSpeed
+var viewSides = 0.0
 func _process(delta: float) -> void:
-	print("In Floor: " + str(is_on_floor()))
+	#print("In Floor: " + str(is_on_floor()))
+	DebugVariable.PlayerVelocity = velocity.x
+
+func _physics_process(delta: float) -> void:
+	rotation.y = lerp_angle(rotation.y,viewSides,10 * delta)

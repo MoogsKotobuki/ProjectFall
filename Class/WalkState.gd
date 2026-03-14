@@ -1,47 +1,51 @@
 extends State
 
-@export var Speed = 1.5
-@export var accel = 1
+@onready var fixer:Fixer = Fixer.new()
+
+var Speed
+@export var accel = 20
 @export var decel = 10
 var friction = 1
-var cVelocity
 
+var globalDirection = 0
+var globalInputStrenght = 0
 # Called when the node enters the scene tree for the first time.
 func enter() -> void:
 	var r = ReadyState.new()
 	r.Ready(self,state_machine,1)
-	cVelocity = Entity.cVelocity
-
-func exit() -> void:
-	Entity.cVelocity = cVelocity
+	Speed = Entity.walkSpeed
+	Entity.previousMaxSpeed = Speed
 	
 func _update(_delta: float) -> void:
 	var raw_input = Vector2(IHandler.mov.x,0)
 	var input_strenght = raw_input.length()
+	globalInputStrenght = input_strenght
 	
+	if !Entity.is_on_floor():
+		state_machine.change_state("fall")
+	
+	if Input.is_action_pressed("jump"):
+		state_machine.change_state("jump")
 	if input_strenght == 0:
 		state_machine.change_state("idle")
 	if input_strenght >0.75:
 		state_machine.change_state("run")
 		
 func _physics_update(_delta: float) -> void:
-	
-	if cVelocity > Speed:
-		cVelocity -= (decel * friction) * _delta
-	else:
-		cVelocity += (accel * Speed) * _delta
-		cVelocity = clamp(cVelocity,0,Speed)
-	
 	var direction = IHandler.mov.x
-	print(direction)
-	if direction > 0.0001:
-		Entity.rotation.y = PI
-	elif direction < -0.0001:
-		Entity.rotation.y = 0
-	var basis =  -Entity.global_basis.x
-	Entity.velocity.x = round((cVelocity * basis.x) * 100) / 100.0
-	
-	DebugVariable.PlayerVelocity = Entity.velocity.x
-	
+	if direction:
+		if direction > 0:
+			globalDirection =1
+		else:
+			globalDirection = -1
+			
+		if globalDirection > 0:
+				Entity.viewSides = PI
+		elif globalDirection < 0:
+				Entity.viewSides = 0
+		Entity.velocity.x += (accel * _delta) * globalDirection
+	else:
+		state_machine.change_state("idle")
 	Entity.move_and_slide()
 	
+	fixer.MaxSpeedFix(Entity,Speed)
