@@ -25,15 +25,20 @@ func _update(_delta: float) -> void:
 	globalInputStrenght = input_strenght
 	if input_strenght >0.75:
 		Speed = Entity.runSpeed
+	
 func _physics_update(_delta: float) -> void:
 	if !Entity.is_on_floor():
 		Entity.velocity.y += (Entity.get_gravity().y * Entity.mass) * _delta
 		midAirMovement(_delta)
 		if Input.is_action_just_pressed("jump"):
 			state_machine.change_state("jump")
+			if globalInputStrenght == 0:
+				Entity.velocity.x = 0
 	else:
 		JumpState.jumpLimit = 0
 		state_machine.change_state("idle")
+		if globalInputStrenght == 0:
+			Entity.velocity.x = Entity.velocity.x * 0.5
 	Entity.move_and_slide()
 
 func midAirMovement(_delta) -> void:

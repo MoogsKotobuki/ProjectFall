@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://civ2ikddeeani"]
+
+[ext_resource type="PackedScene" uid="uid://b6pffarmh2p3n" path="res://UI/MainMenu.tscn" id="1_lkmdp"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_y2i25"]
+sky_top_color = Color(1, 1, 1, 1)
+sky_horizon_color = Color(2.1665, 2.1665, 2.1665, 1)
+ground_bottom_color = Color(1, 1, 1, 1)
+ground_horizon_color = Color(2.1665, 2.1665, 2.1665, 1)
+
+[sub_resource type="Sky" id="Sky_lkmdp"]
+sky_material = SubResource("ProceduralSkyMaterial_y2i25")
+
+[sub_resource type="Environment" id="Environment_50j0w"]
+background_mode = 2
+sky = SubResource("Sky_lkmdp")
+tonemap_mode = 2
+
+[node name="Node3D" type="Node3D" unique_id=1914710286]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=307347883]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1489314, 2.2876058)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=299537565]
+environment = SubResource("Environment_50j0w")
+
+[node name="Control" parent="." unique_id=579829858 instance=ExtResource("1_lkmdp")]

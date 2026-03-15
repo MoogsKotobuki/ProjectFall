@@ -35,11 +35,12 @@ func _physics_update(_delta: float) -> void:
 		else:
 			globalDirection = -1
 			
-		if globalDirection > 0:
-				Entity.viewSides = PI
-		elif globalDirection < 0:
-				Entity.viewSides = 0
 		Entity.velocity.x += (accel * _delta) * globalDirection
+		
+		if Entity.velocity.x > 0:
+				Entity.viewSides = PI
+		elif Entity.velocity.x < 0:
+				Entity.viewSides = 0
 	else:
 		state_machine.change_state("idle")
 	Entity.move_and_slide()
