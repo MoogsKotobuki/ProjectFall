@@ -66,9 +66,8 @@ wait_time = 0.5
 one_shot = true
 autostart = true
 
-[node name="Fall" type="Node" parent="StateMachine" unique_id=430876757 node_paths=PackedStringArray("JumpState")]
+[node name="Fall" type="Node" parent="StateMachine" unique_id=430876757]
 script = ExtResource("8_stese")
-JumpState = NodePath("../Jump")
 metadata/_custom_type_script = "uid://bfxeubn6ba5in"
 
 [node name="InputHandler" type="Node" parent="." unique_id=578891036 node_paths=PackedStringArray("initial_state")]

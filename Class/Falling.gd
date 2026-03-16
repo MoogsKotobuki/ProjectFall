@@ -7,7 +7,8 @@ var gravity
 var Speed:float
 @export var accel = 5
 @export var decel = 10
-@export var JumpState:State
+@export var maxJump = 1
+var jumpLimit = 0
 
 var frictionLand = 2.0
 var friction = 1
@@ -30,12 +31,13 @@ func _physics_update(_delta: float) -> void:
 	if !Entity.is_on_floor():
 		Entity.velocity.y += (Entity.get_gravity().y * Entity.mass) * _delta
 		midAirMovement(_delta)
-		if Input.is_action_just_pressed("jump"):
+		if Input.is_action_just_pressed("jump") and jumpLimit < maxJump:
+			jumpLimit+= 1
 			state_machine.change_state("jump")
 			if globalInputStrenght == 0:
 				Entity.velocity.x = 0
 	else:
-		JumpState.jumpLimit = 0
+		jumpLimit = 0
 		state_machine.change_state("idle")
 		if globalInputStrenght == 0:
 			Entity.velocity.x = Entity.velocity.x * 0.5

@@ -9,7 +9,7 @@ func GetCharacter3D(stateMachine:StateMachine):
 	g.getCharacter3D(stateMachine)
 	if g.value != null:
 		object.append(g.value)
-		g.value == null
+		g.value = null
 
 func GetInputHandler(node:Node):
 	var g = GetAlgo.new()
@@ -18,4 +18,4 @@ func GetInputHandler(node:Node):
 	
 	if g.value != null:
 		object.append(g.value)
-		g.value == null
+		g.value = null
