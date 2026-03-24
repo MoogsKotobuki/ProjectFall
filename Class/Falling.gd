@@ -7,7 +7,7 @@ var gravity
 var Speed:float
 @export var accel = 5
 @export var decel = 10
-@export var maxJump = 1
+@export var maxJump = 2
 var jumpLimit = 0
 
 var frictionLand = 2.0

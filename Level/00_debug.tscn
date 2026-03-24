@@ -221,3 +221,6 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 244.7168, 11.567036, -189.6122)
 mesh = SubResource("BoxMesh_vluvn")
 skeleton = NodePath("../..")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1900610701]
+size = Vector2i(1366, 768)

@@ -3,7 +3,11 @@
 [ext_resource type="Script" uid="uid://dmkuthv6qaug0" path="res://Class/StateMachine.gd" id="1_hy81t"]
 [ext_resource type="Script" uid="uid://u5eglbc3u88v" path="res://Class/PlayerCam.gd" id="2_cj3pu"]
 
+[sub_resource type="Compositor" id="Compositor_hy81t"]
+compositor_effects = Array[CompositorEffect]([null])
+
 [node name="Camera3D" type="Camera3D" unique_id=1880610517]
+compositor = SubResource("Compositor_hy81t")
 
 [node name="StateMachine" type="Node" parent="." unique_id=171200061 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("1_hy81t")
