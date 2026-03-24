@@ -56,6 +56,7 @@ size = Vector3(19.225, 41.53, 14.885)
 
 [node name="LevelDebug" type="Node3D" unique_id=1628727976]
 script = ExtResource("1_mn1jl")
+framerate = 144
 
 [node name="Control" parent="." unique_id=1857890456 instance=ExtResource("2_tgmvk")]
 
@@ -74,7 +75,7 @@ mesh = SubResource("PlaneMesh_cou4y")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=293418539]
 shape = SubResource("ConcavePolygonShape3D_tgmvk")
 
-[node name="Player" parent="." unique_id=1953909952 instance=ExtResource("1_o0yo6")]
+[node name="Player" parent="." unique_id=727266924 instance=ExtResource("1_o0yo6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.912, 0, 0)
 
 [node name="Camera" parent="." unique_id=1880610517 instance=ExtResource("2_cou4y")]

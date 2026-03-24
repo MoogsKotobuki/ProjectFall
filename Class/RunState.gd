@@ -7,7 +7,6 @@ var Speed
 @export var decel = 10
 
 var friction = 1
-var globalDirection = 0
 var globalInputStrenght = 0
 
 # Called when the node enters the scene tree for the first time.
@@ -27,15 +26,19 @@ func _update(_delta: float) -> void:
 	if !Entity.is_on_floor():
 		state_machine.change_state("fall")
 	
+
 func _physics_update(_delta: float) -> void:
 	var direction = IHandler.mov.x
+	var globalDirection = 0
+	var a = accel
+
+	if direction > 0:
+		globalDirection =1
+	else:
+		globalDirection = -1
+	
 	if direction:
-		if direction > 0:
-			globalDirection =1
-		else:
-			globalDirection = -1
-			
-		Entity.velocity.x += (accel * _delta) * globalDirection
+		Entity.velocity.x += (a * _delta) * globalDirection
 		
 		if Entity.velocity.x > 0:
 				Entity.viewSides = PI

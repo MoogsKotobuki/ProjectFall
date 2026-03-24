@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://bnp047n2k5kub"]
+
+[ext_resource type="PackedScene" uid="uid://b60a5e6ls1clg" path="res://assets/3D/merene.glb" id="1_wp4on"]
+[ext_resource type="Script" uid="uid://d1kpvudxb51rm" path="res://Class/EntityModel.gd" id="2_t2mk7"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t2mk7"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y3mlj"]
+animation = &"Run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2wmjt"]
+animation = &"Walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_y3mlj"]
+advance_mode = 2
+advance_expression = "ent.stateStatus == \"idle\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e032f"]
+advance_mode = 2
+advance_expression = "ent.stateStatus = \"walk\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lx20h"]
+advance_mode = 2
+advance_expression = "ent.stateStatus == \"run\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vt87j"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_t2mk7"]
+states/End/position = Vector2(832, 100)
+states/Idle/node = SubResource("AnimationNodeAnimation_t2mk7")
+states/Idle/position = Vector2(310, 100)
+states/Run/node = SubResource("AnimationNodeAnimation_y3mlj")
+states/Run/position = Vector2(547, 100)
+states/Start/position = Vector2(202, 100)
+states/Walk/node = SubResource("AnimationNodeAnimation_2wmjt")
+states/Walk/position = Vector2(434, 100)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_y3mlj"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_e032f"), "Walk", "Run", SubResource("AnimationNodeStateMachineTransition_lx20h"), "Run", "End", SubResource("AnimationNodeStateMachineTransition_vt87j")]
+
+[node name="merene" unique_id=1528950836 instance=ExtResource("1_wp4on")]
+script = ExtResource("2_t2mk7")
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="1" unique_id=1532108752]
+tree_root = SubResource("AnimationNodeStateMachine_t2mk7")
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../AnimationPlayer")
