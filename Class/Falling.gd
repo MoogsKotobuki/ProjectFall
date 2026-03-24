@@ -5,15 +5,9 @@ var gravity
 @onready var fixer:Fixer = Fixer.new()
 
 var Speed:float
-<<<<<<< Updated upstream
 @export var accel = 5
 @export var decel = 10
 @export var maxJump = 1
-=======
-@export var accel:float = 5.0
-@export var maxJump:int = 2
-@export var friction:float = 0.5
->>>>>>> Stashed changes
 var jumpLimit = 0
 
 var frictionLand = 2.0
@@ -25,19 +19,8 @@ func enter() -> void:
 	var r = ReadyState.new()
 	r.Ready(self,state_machine,1)
 	
-	if Entity.velocity.y > 0:
-		jumpLimit +=1
-	
 	Speed = Entity.previousMaxSpeed
 func _update(_delta: float) -> void:
-<<<<<<< Updated upstream
-=======
-	if Entity.velocity.y < 0.1 and doublejump == true:
-			state_machine.change_state("jump")
-			jumpLimit -=1
-			doublejump = false
-	
->>>>>>> Stashed changes
 	var raw_input = Vector2(IHandler.mov.x,0)
 	var input_strenght = raw_input.length()
 	globalInputStrenght = input_strenght
