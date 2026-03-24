@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://ctuu2a6qkqb74" path="res://Class/RunState.gd" id="4_ntrk5"]
 [ext_resource type="Script" uid="uid://7fccwb3ig5rv" path="res://Class/Jump.gd" id="7_iaa3j"]
 [ext_resource type="Script" uid="uid://pifx3xwv5ak" path="res://Class/Falling.gd" id="8_stese"]
+[ext_resource type="PackedScene" uid="uid://bnp047n2k5kub" path="res://assets/3D/merene.tscn" id="10_stese"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_y6x37"]
 radius = 0.35
@@ -17,16 +18,22 @@ height = 1.69
 [sub_resource type="BoxMesh" id="BoxMesh_mhpys"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_iaa3j"]
-size = Vector3(0.7, 1.69, 0.7)
+size = Vector3(0.7, 1.7561328, 0.7)
 
 [node name="Entity" type="CharacterBody3D" unique_id=727266924]
 script = ExtResource("1_mhpys")
 mass = 3.5
 JumpForce = 1.5
+runSpeed = 3.5
+walkSpeed = 1.0
 metadata/_custom_type_script = "uid://ctffwkhfuxb8c"
+
+[node name="merene" parent="." unique_id=1528950836 instance=ExtResource("10_stese")]
+transform = Transform3D(-0.25881904, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, -0.25881904, 0, 0, 0)
 
 [node name="MeshPlaceHolder" type="Node3D" parent="." unique_id=1880820043]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.854442, 0)
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MeshPlaceHolder" unique_id=924538509]
 mesh = SubResource("CapsuleMesh_y6x37")
@@ -36,7 +43,7 @@ transform = Transform3D(0.23, 0, 0, 0, 0.23, 0, 0, 0, 0.23, -0.81489867, 0.42307
 mesh = SubResource("BoxMesh_mhpys")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=376896990]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.854442, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8875084, 0)
 shape = SubResource("BoxShape3D_iaa3j")
 
 [node name="StateMachine" type="Node" parent="." unique_id=1031256437 node_paths=PackedStringArray("initial_state")]
@@ -60,11 +67,6 @@ metadata/_custom_type_script = "uid://bfxeubn6ba5in"
 [node name="Jump" type="Node" parent="StateMachine" unique_id=2099684512]
 script = ExtResource("7_iaa3j")
 metadata/_custom_type_script = "uid://bfxeubn6ba5in"
-
-[node name="Timer" type="Timer" parent="StateMachine/Jump" unique_id=216617496]
-wait_time = 0.5
-one_shot = true
-autostart = true
 
 [node name="Fall" type="Node" parent="StateMachine" unique_id=430876757]
 script = ExtResource("8_stese")
