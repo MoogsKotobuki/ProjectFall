@@ -8,4 +8,4 @@ func _ready() -> void:
 	animTree.active = true
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	print(parent.stateStatus)
+	animTree.set("parameters/On Air/blend_position",parent.velocity.y)
