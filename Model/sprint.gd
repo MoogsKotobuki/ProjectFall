@@ -1,41 +1,47 @@
 extends State
 
-@onready var fixer:Fixer = Fixer.new()
 
+@onready var fixer:Fixer = Fixer.new()
 var Speed
 @export var accel = 20
 @export var decel = 10
-var friction = 1
 
-var globalDirection = 0
+var friction = 1
 var globalInputStrenght = 0
+
 # Called when the node enters the scene tree for the first time.
 func enter() -> void:
 	var r = ReadyState.new()
 	r.Ready(self,state_machine,1)
-	Speed = Entity.moveAttributes.speed.walk
-	Entity.playerAttributes.animationState="walk"
+	Speed = Entity.moveAttributes.speed.sprint
 	Entity.previousMaxSpeed = Speed
+	Entity.playerAttributes.animationState="sprint"
 	Entity.specialStates = "Standing"
 	
 func _update(_delta: float) -> void:
 	if !Entity.is_on_floor():
 		state_machine.change_state("fall")
+
 func _physics_update(_delta: float) -> void:
 	var direction = IHandler.mov.x
-	if abs(direction) >0.2:
-		if direction > 0:
-			globalDirection =1
-		else:
-			globalDirection = -1
-			
-		if globalDirection > 0:
+	var globalDirection = 0
+	var a = accel
+
+	if direction > 0:
+		globalDirection =1
+	else:
+		globalDirection = -1
+	
+	if direction:
+		Entity.velocity.x += (a * _delta) * globalDirection
+		
+		if Entity.velocity.x > 0:
 				Entity.viewSides = PI
-		elif globalDirection < 0:
+		elif Entity.velocity.x < 0:
 				Entity.viewSides = 0
-		Entity.velocity.x += (accel * _delta) * globalDirection
 	else:
 		state_machine.change_state("idle")
 	Entity.move_and_slide()
 	
 	fixer.MaxSpeedFix(Entity,Speed)
+	

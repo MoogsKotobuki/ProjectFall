@@ -13,19 +13,14 @@ var globalInputStrenght = 0
 func enter() -> void:
 	var r = ReadyState.new()
 	r.Ready(self,state_machine,1)
-	Speed = Entity.runSpeed
+	Speed = Entity.moveAttributes.speed.run
+	Entity.playerAttributes.animationState="run"
 	Entity.previousMaxSpeed = Speed
+	Entity.specialStates = "Standing"
 	
 func _update(_delta: float) -> void:
-	var raw_input = Vector2(IHandler.mov.x,0)
-	var input_strenght = raw_input.length()
-	globalInputStrenght = input_strenght
-	
-	if Input.is_action_just_pressed("jump"):
-		state_machine.change_state("jump")
 	if !Entity.is_on_floor():
 		state_machine.change_state("fall")
-	
 
 func _physics_update(_delta: float) -> void:
 	var direction = IHandler.mov.x

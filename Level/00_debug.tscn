@@ -56,7 +56,6 @@ size = Vector3(19.225, 41.53, 14.885)
 
 [node name="LevelDebug" type="Node3D" unique_id=1628727976]
 script = ExtResource("1_mn1jl")
-framerate = 144
 
 [node name="Control" parent="." unique_id=1857890456 instance=ExtResource("2_tgmvk")]
 
@@ -77,6 +76,7 @@ shape = SubResource("ConcavePolygonShape3D_tgmvk")
 
 [node name="Player" parent="." unique_id=727266924 instance=ExtResource("1_o0yo6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.912, 0, 0)
+JumpForce = 2.0
 
 [node name="Camera" parent="." unique_id=1880610517 instance=ExtResource("2_cou4y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 20)
@@ -146,7 +146,7 @@ mesh = SubResource("BoxMesh_tgmvk")
 shape = SubResource("ConcavePolygonShape3D_vluvn")
 
 [node name="MeshInstance3D11" type="MeshInstance3D" parent="." unique_id=1720821383]
-transform = Transform3D(0.73510396, 0.67795444, 0, -0.67795444, 0.73510396, 0, 0, 0, 1, 25.629, 4.516, 0)
+transform = Transform3D(0.73510396, 0.67795444, 0, -0.67795444, 0.73510396, 0, 0, 0, 1, 25.628105, 4.5164466, 0)
 mesh = SubResource("BoxMesh_tgmvk")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D11" unique_id=270508543]

@@ -9,6 +9,8 @@ var shift_amount = 1
 var smooth_speed = 1
 var smooth_return = 1.5
 var maxShift = 3.0
+
+
 func enter() -> void:
 	Camera = state_machine.get_parent()
 	var r = GetAlgo.new()

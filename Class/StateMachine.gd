@@ -5,7 +5,6 @@ class_name StateMachine extends Node
 var current_state: State
 var states:Dictionary[String,State] = {}
 var IHandler:InputHandler
-
 func _ready() -> void:
 	var parent = get_parent()
 

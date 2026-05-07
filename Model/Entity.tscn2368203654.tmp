@@ -12,35 +12,41 @@
 [ext_resource type="Script" uid="uid://pifx3xwv5ak" path="res://Class/Falling.gd" id="8_stese"]
 [ext_resource type="Script" uid="uid://c05ktm0to0um8" path="res://Class/Duck.gd" id="9_pikhm"]
 [ext_resource type="PackedScene" uid="uid://su0h3u0o7dqa" path="res://assets/3D/merene.tscn" id="10_stese"]
-[ext_resource type="Script" uid="uid://c8356q8q0aems" path="res://Model/dash.gd" id="11_4ur2k"]
-[ext_resource type="Script" uid="uid://3ov3w35mkk75" path="res://Model/sprint.gd" id="12_j26x7"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e1hog"]
-radius = 0.261
-height = 1.768
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_y6x37"]
+radius = 0.35
+height = 1.69
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4ur2k"]
-radius = 0.3515625
-height = 0.7893955
+[sub_resource type="BoxMesh" id="BoxMesh_mhpys"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iaa3j"]
+size = Vector3(0.35648194, 1.7561328, 0.7)
 
 [node name="Entity" type="CharacterBody3D" unique_id=727266924]
-floor_max_angle = 0.79063416
 script = ExtResource("1_mhpys")
 mass = 3.5
+JumpForce = 1.5
+runSpeed = 3.5
+walkSpeed = 1.0
 metadata/_custom_type_script = "uid://ctffwkhfuxb8c"
 
-[node name="model" parent="." unique_id=1528950836 instance=ExtResource("10_stese")]
+[node name="merene" parent="." unique_id=1528950836 instance=ExtResource("10_stese")]
 transform = Transform3D(-0.25881904, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, -0.25881904, 0, 0, 0)
 
-[node name="Standing" type="CollisionShape3D" parent="." unique_id=376896990]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01996462, 0.8875084, 0)
+[node name="MeshPlaceHolder" type="Node3D" parent="." unique_id=1880820043]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.854442, 0)
 visible = false
-shape = SubResource("CapsuleShape3D_e1hog")
 
-[node name="Duck" type="CollisionShape3D" parent="." unique_id=1834118783]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01996462, 0.39820614, 0)
-visible = false
-shape = SubResource("CapsuleShape3D_4ur2k")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshPlaceHolder" unique_id=924538509]
+mesh = SubResource("CapsuleMesh_y6x37")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshPlaceHolder/MeshInstance3D" unique_id=1005972645]
+transform = Transform3D(0.23, 0, 0, 0, 0.23, 0, 0, 0, 0.23, -0.81489867, 0.42307878, 0)
+mesh = SubResource("BoxMesh_mhpys")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=376896990]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01996462, 0.8875084, 0)
+shape = SubResource("BoxShape3D_iaa3j")
 
 [node name="StateMachine" type="Node" parent="." unique_id=1031256437 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_poqhb")
@@ -68,36 +74,21 @@ metadata/_custom_type_script = "uid://bfxeubn6ba5in"
 script = ExtResource("7_iaa3j")
 metadata/_custom_type_script = "uid://bfxeubn6ba5in"
 
-[node name="Fall" type="Node" parent="StateMachine" unique_id=430876757]
+[node name="Fall" type="Node" parent="StateMachine" unique_id=430876757 node_paths=PackedStringArray("jumpState")]
 script = ExtResource("8_stese")
+jumpState = NodePath("../Jump")
 metadata/_custom_type_script = "uid://bfxeubn6ba5in"
 
 [node name="Duck" type="Node" parent="StateMachine" unique_id=2072299513]
 script = ExtResource("9_pikhm")
 metadata/_custom_type_script = "uid://bfxeubn6ba5in"
 
-[node name="Dash" type="Node" parent="StateMachine" unique_id=381699378]
-script = ExtResource("11_4ur2k")
-dashTimer = 0.35
-metadata/_custom_type_script = "uid://bfxeubn6ba5in"
-
-[node name="Timer" type="Timer" parent="StateMachine/Dash" unique_id=1079297505]
-process_callback = 0
-one_shot = true
-
-[node name="Sprint" type="Node" parent="StateMachine" unique_id=1477894640]
-script = ExtResource("12_j26x7")
-metadata/_custom_type_script = "uid://dmkuthv6qaug0"
-
 [node name="InputHandler" type="Node" parent="." unique_id=578891036 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_2iqeg")
 initial_state = NodePath("PlayerControl")
 metadata/_custom_type_script = "uid://cnolx3vya64rc"
 
-[node name="PlayerControl" type="Node" parent="InputHandler" unique_id=395443593 node_paths=PackedStringArray("sm", "ent")]
+[node name="PlayerControl" type="Node" parent="InputHandler" unique_id=395443593 node_paths=PackedStringArray("sm")]
 script = ExtResource("4_8j744")
 sm = NodePath("../../StateMachine")
-ent = NodePath("../..")
 metadata/_custom_type_script = "uid://bfxeubn6ba5in"
-
-[connection signal="timeout" from="StateMachine/Dash/Timer" to="StateMachine/Dash" method="_on_timer_timeout"]

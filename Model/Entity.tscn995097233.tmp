@@ -27,6 +27,13 @@ height = 0.7893955
 floor_max_angle = 0.79063416
 script = ExtResource("1_mhpys")
 mass = 3.5
+speed = {
+"dashSpeed": 10.0,
+"runSpeed": 5.0,
+"sprintSpeed": 6.5,
+"walkSpeed": 1.5
+}
+JumpForce = 1.5
 metadata/_custom_type_script = "uid://ctffwkhfuxb8c"
 
 [node name="model" parent="." unique_id=1528950836 instance=ExtResource("10_stese")]

@@ -8,7 +8,6 @@ var Speed:float
 @export var accel = 5
 @export var decel = 10
 @export var maxJump = 2
-var jumpLimit = 0
 
 var frictionLand = 2.0
 var friction = 1
@@ -19,40 +18,24 @@ var globalInputStrenght = 0
 func enter() -> void:
 	var r = ReadyState.new()
 	r.Ready(self,state_machine,1)
-	
-	jumpLimit += 1
+	Entity.specialStates = "Standing"
 	Speed = Entity.previousMaxSpeed
 
+func exit() -> void:
+	if abs(IHandler.mov.x) <= 0.2:
+		Entity.velocity.x = 0
+
 func _update(_delta: float) -> void:
-	var raw_input = Vector2(IHandler.mov.x,0)
-	var input_strenght = raw_input.length()
-	globalInputStrenght = input_strenght
-	if input_strenght >0.75:
-		Speed = Entity.runSpeed
-	
-	if Entity.velocity.y < 5.0 and doubleJump == true:
-		state_machine.change_state("jump")
-		doubleJump = false
-	
+	pass
 func _physics_update(_delta: float) -> void:
 	if !Entity.is_on_floor():
 		Entity.velocity.y += (Entity.get_gravity().y * Entity.mass) * _delta
 		midAirMovement(_delta)
-		if Input.is_action_just_pressed("jump") and jumpLimit < maxJump:
-			jumpLimit+= 1
-			doubleJump = true
-			if globalInputStrenght == 0:
-				Entity.velocity.x = 0
-	else:
-		jumpLimit = 0
-		state_machine.change_state("idle")
-		if globalInputStrenght == 0:
-			Entity.velocity.x = Entity.velocity.x * 0.5
 	Entity.move_and_slide()
 
 func midAirMovement(_delta) -> void:
 	var direction = IHandler.mov.x
-	if direction:
+	if abs(direction) > 0.2:
 		if direction > 0:
 			globalDirection =1
 		else:
